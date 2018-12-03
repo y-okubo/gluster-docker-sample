@@ -1,7 +1,7 @@
 version: '3'
 services:
   gluster-srv1:
-    build: ./glusterfs
+    image: ac3agrtp/centos6-glusterfs:3.12
     restart: always
     tty: true
     privileged: true
@@ -14,14 +14,13 @@ services:
     privileged: true
     volumes:
       - vol2
+    depends_on:
+      - gluster-srv1
   client:
     build: ./client
     restart: always
     tty: true
     privileged: true
-    links:
-      - gluster-srv1
-      - gluster-srv2
     depends_on:
       - gluster-srv1
       - gluster-srv2

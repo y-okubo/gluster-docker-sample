@@ -15,8 +15,4 @@ gluster vol start gluster-testvol
 gluster peer status
 gluster pool list
 
-mkdir /sample
-mount -t glusterfs gluster-srv1:gluster-testvol /sample
-touch /sample/testfile1 /sample/testfile2 /sample/testfile3 /sample/testfile4
-
 exec /bin/bash
