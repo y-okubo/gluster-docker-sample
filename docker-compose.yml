@@ -1,0 +1,27 @@
+version: '3'
+services:
+  gluster-srv1:
+    build: ./glusterfs
+    restart: always
+    tty: true
+    privileged: true
+    volumes:
+      - vol1
+  gluster-srv2:
+    build: ./glusterfs
+    restart: always
+    tty: true
+    privileged: true
+    volumes:
+      - vol2
+  client:
+    build: ./client
+    restart: always
+    tty: true
+    privileged: true
+    links:
+      - gluster-srv1
+      - gluster-srv2
+    depends_on:
+      - gluster-srv1
+      - gluster-srv2
